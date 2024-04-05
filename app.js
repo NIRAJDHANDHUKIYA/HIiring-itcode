@@ -26,9 +26,7 @@ app.use(express.urlencoded({extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/',((req,res)=>{
-  send.message("inddexfile")
-}));
+app.use('/', indexRouter);
    
 
 // error handler
