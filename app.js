@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://NIRAJ:NIRAJ23@cluster0.2ej5zym.mongodb.net/Hiring_Project')
@@ -26,14 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.get('/',(req,res)=>{
-  res.send({message:"indexfile"})
-})
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+   
 
 // error handler
 app.use(function(err, req, res, next) {

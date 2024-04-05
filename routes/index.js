@@ -41,7 +41,6 @@ try {
     if (!checkPass) {
         throw new Error("please check password")
     }
-   
     res.status(200).json({
         status: "login",
         message: "success",
