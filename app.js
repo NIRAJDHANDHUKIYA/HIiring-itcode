@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
+var app = express();
 
-app.use(cors())
 var indexRouter = require('./routes/index');
 
 const mongoose = require('mongoose');
@@ -14,8 +14,8 @@ mongoose.connect('mongodb+srv://NIRAJ:NIRAJ23@cluster0.2ej5zym.mongodb.net/Hirin
   .then(() => console.log('Connected!'))
   .catch((err) => console.log(err.message))
 
-var app = express();
 
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
