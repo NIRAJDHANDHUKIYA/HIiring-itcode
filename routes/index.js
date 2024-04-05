@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var cors = require('cors')
 
 // const bcrypt = require('bcrypt')
 const USER = require('../model/user')
@@ -41,11 +42,12 @@ try {
     if (!checkPass) {
         throw new Error("please check password")
     }
+
     res.status(200).json({
-        status: "login",
-        message: "success",
-       
+        status: "user login",
+        message: "successfully",
     })
+
 } catch (error) {
     res.status(404).json({
         status: "fail",
