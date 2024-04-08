@@ -44,7 +44,7 @@ try {
     }
 
     res.status(200).json({
-        status: "user login",
+        status: "login",
         message: "successfully",
     })
 
