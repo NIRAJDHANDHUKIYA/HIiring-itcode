@@ -27,6 +27,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
    
+app.use('/',((req,res)=>{
+  res.message("indexfile")
+}))
 
 // error handler
 app.use(function(err, req, res, next) {
