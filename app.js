@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
    
 app.get('/',(req,res) => {
-  res.send("Done")
+  res.send('<h1>Done</h1>')
 })
 
 module.exports = app;
