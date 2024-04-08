@@ -7,7 +7,6 @@ var cors = require('cors')
 var app = express();
 
 var indexRouter = require('./routes/index');
-
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://NIRAJ:NIRAJ23@cluster0.2ej5zym.mongodb.net/Hiring_Project')
@@ -27,19 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
    
-app.post('/',((req,res)=>{
-  res.message("indexfile")
-}))
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.get('/',(req,res) => {
+  res.send("Done")
+})
 
 module.exports = app;

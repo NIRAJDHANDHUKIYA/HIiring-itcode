@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var cors = require('cors')
-
 // const bcrypt = require('bcrypt')
 const USER = require('../model/user')
 /* GET home page. */
