@@ -13,7 +13,6 @@ mongoose.connect('mongodb+srv://NIRAJ:NIRAJ23@cluster0.2ej5zym.mongodb.net/Hirin
   .then(() => console.log('Connected!'))
   .catch((err) => console.log(err.message))
 
-
 app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +24,7 @@ app.use(express.urlencoded({extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-   
+  
 app.get('/',(req,res) => {
   res.send('<h1>Done</h1>')
 })
