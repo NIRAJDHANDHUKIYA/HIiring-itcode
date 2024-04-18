@@ -3,7 +3,9 @@ const router = express.Router();
 const cors = require('cors')
 const Quiz = require('../model/quiz')
 const USER = require('../model/user')
-/* GET home page. */
+
+
+//signup
 router.post("/signup", async function (req, res) {
   try {
     if (!req.body.Firstname ||!req.body.Lastname || !req.body.Email || !req.body.Hrname || !req.body.Phonenumber || !req.body.Password) 
@@ -25,6 +27,7 @@ router.post("/signup", async function (req, res) {
 }
 );
 
+//login
 router.post('/login', async function (req, res) {
 try {
     if (!req.body.Email || !req.body.Password) {
@@ -53,9 +56,7 @@ try {
   }
 })
 
-/****************************/
-
-// Create
+//  quiz Create
 router.post('/quiz', async (req, res) => {
   try {
       const quiz = await Quiz.create(req.body);
@@ -65,7 +66,7 @@ router.post('/quiz', async (req, res) => {
   }
 });
 
-// find
+// quiz find
 router.get('/quiz', async (req, res) => {
   try {
       const quizzes = await Quiz.find();
@@ -74,8 +75,7 @@ router.get('/quiz', async (req, res) => {
       res.status(500).send(err);
 }})
 
-
-//populate
+//quiz populate
 router.get('/populate', async (req, res) => {
     try {
         const quizzes = await Quiz.find().populate("userid");
@@ -83,36 +83,6 @@ router.get('/populate', async (req, res) => {
     } catch (err) {
         res.status(500).send(err);
     }
-D
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Get quiz by ID
-// router.get('/api/quiz/:id', async (req, res) => {
-//   try {
-//       const quiz = await Quiz.findById(req.params.id);
-//       if (!quiz) {
-//           return res.status(404).send('Quiz not found');
-//       }
-//       res.send(quiz);
-//   } catch (err) {
-//       res.status(500).send(err);
-//   }
-// });
 
 module.exports = router;
