@@ -60,7 +60,10 @@ try {
 router.post('/quiz', async (req, res) => {
   try {
       const quiz = await Quiz.create(req.body);
-      res.status(201).send(quiz);
+      res.status(200).json({
+        status: "Success",
+        message: "Task Completed",
+        })
   } catch (err) {
       res.status(400).send(err);
   }
@@ -85,4 +88,16 @@ router.get('/populate', async (req, res) => {
     }
   });
 
+  router.get('/admin', (req, res) => {
+    // Logic to fetch users from the database
+    res.json({ message: 'List of users' });
+  });
+  
+  router.post('/admin', (req, res) => {
+    // Logic to create a new user
+    res.json({ message: 'User created' });
+  });
+
+
+  
 module.exports = router;
