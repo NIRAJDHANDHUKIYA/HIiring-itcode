@@ -88,6 +88,7 @@ router.get('/populate', async (req, res) => {
     }
   });
 
+//admin penal  
   router.get('/admin', (req, res) => {
     // Logic to fetch users from the database
     res.json({ message: 'List of users' });
