@@ -87,6 +87,7 @@ router.get('/populate', async (req, res) => {
     }
   });
 
+
 //admin penal
 
 //get user data
@@ -129,28 +130,6 @@ router.get("/getuser", async function (req, res) {
 //       // }
 //     ])
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
 
