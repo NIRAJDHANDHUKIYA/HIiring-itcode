@@ -108,6 +108,19 @@ router.get("/getuser", async function (req, res) {
   }
 );
 
+router.delete("/user-delete", async function (req, res) {
+  try {
+     const data = await USER.deleteOne();
+     res.status(200).json({
+      mespsage: "User Deleted succsessfully",
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "FAIL",
+    });
+  }
+}
+);
 
 //&&&&&&//
 // router.get('/aggregate', async function (req, res) {
