@@ -122,29 +122,29 @@ router.delete("/user-delete/:id", async function (req, res) {
 }
 );
 
-//&&&&&&//
-// router.get('/aggregate', async function (req, res) {
-//       const {quizzes}=req.params
+router.get('/find/:userId', async function (req, res) {
+  const userId = req.params.userId;
+  try {
+      const user = await Quiz.find({ userid: userId });
+      res.status(200).json(user);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Data Not Find" });
+  }
+});
 
-//       if (!quizzes ?.trim()) {
-//         throw new Error(400,"plz enter data")
-//       }
-//     const user  = await quizzes.aggregate([
-//       {
-//         $match:{
-//           _id:userid
-//         }
-//       },
-//       // {
-//       //     $lookup:{
-//       //       from:"quizzes",
-//       //       localField:"_id",
-//       //     }
-//       // }
-//     ])
-// });
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
 
 
 
+  
