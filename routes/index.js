@@ -91,7 +91,7 @@ router.get('/populate', async (req, res) => {
 //admin penal
 
 //get user data
-router.get("/getuser", async function (req, res) {
+router.get("/get-user", async function (req, res) {
     try {
        const data = await USER.find();
       res.status(200).json({
@@ -108,9 +108,9 @@ router.get("/getuser", async function (req, res) {
   }
 );
 
-router.delete("/user-delete", async function (req, res) {
+router.delete("/user-delete/:id", async function (req, res) {
   try {
-     const data = await USER.deleteOne();
+     const data = await USER.findByIdAndDelete(req.params.id);
      res.status(200).json({
       mespsage: "User Deleted succsessfully",
     });
