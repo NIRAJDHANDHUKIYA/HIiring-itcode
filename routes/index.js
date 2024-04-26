@@ -4,7 +4,6 @@ const cors = require('cors')
 const Quiz = require('../model/quiz')
 const USER = require('../model/user')
 
-
 //signup
 router.post("/signup", async function (req, res) {
   try {
@@ -16,7 +15,6 @@ router.post("/signup", async function (req, res) {
     res.status(200).json({
       status: "✅",
       mespsage: "Sign up succsessfully",
-      data: data,
     });
   } catch (error) {
     res.status(404).json({
@@ -26,6 +24,7 @@ router.post("/signup", async function (req, res) {
   }
 }
 );
+
 
 //login
 router.post('/login', async function (req, res) {
@@ -57,7 +56,7 @@ try {
 })
 
 //  quiz Create
-router.post('/quiz', async (req, res) => {
+router.post('/quize', async (req, res) => {
   try {
       const quiz = await Quiz.create(req.body);
       res.status(200).json({
@@ -70,7 +69,7 @@ router.post('/quiz', async (req, res) => {
 });
 
 // quiz find
-router.get('/quiz', async (req, res) => {
+router.get('/quize', async (req, res) => {
   try {
       const quizzes = await Quiz.find();
       res.send(quizzes);
@@ -84,20 +83,76 @@ router.get('/populate', async (req, res) => {
         const quizzes = await Quiz.find().populate("userid");
         res.send(quizzes);
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).send(err); 
     }
   });
 
-  router.get('/admin', (req, res) => {
-    // Logic to fetch users from the database
-    res.json({ message: 'List of users' });
-  });
-  
-  router.post('/admin', (req, res) => {
-    // Logic to create a new user
-    res.json({ message: 'User created' });
-  });
+//admin penal
+
+//get user data
+router.get("/getuser", async function (req, res) {
+    try {
+       const data = await USER.find();
+      res.status(200).json({
+        status: "✅",
+        mespsage: "User find succsessfully",
+        data: data,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: "FAIL",
+        message: error.message,
+      });
+    }
+  }
+);
 
 
-  
+//&&&&&&//
+// router.get('/aggregate', async function (req, res) {
+//       const {quizzes}=req.params
+
+//       if (!quizzes ?.trim()) {
+//         throw new Error(400,"plz enter data")
+//       }
+//     const user  = await quizzes.aggregate([
+//       {
+//         $match:{
+//           _id:userid
+//         }
+//       },
+//       // {
+//       //     $lookup:{
+//       //       from:"quizzes",
+//       //       localField:"_id",
+//       //     }
+//       // }
+//     ])
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
+
+
+
