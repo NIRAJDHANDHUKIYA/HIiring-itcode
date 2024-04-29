@@ -125,25 +125,15 @@ router.delete("/user-delete/:id", async function (req, res) {
 
 //get user answer data 
 router.get('/find-data/:userId', async function (req, res) {
-  const userId = req.params.userId;
+ 
   try {
-      const user = await Quiz.find({ userid: userId });//req.params.userId
+      const user = await Quiz.find({ userid: req.params.userId });
       res.status(200).json(user);
   } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Data Not Find" });
   }
 });
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
 
