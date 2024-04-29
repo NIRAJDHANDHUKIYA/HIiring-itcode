@@ -91,7 +91,7 @@ router.get('/populate', async (req, res) => {
 //admin penal
 
 //get user data
-router.get("/get-user", async function (req, res) {
+router.get("/get-user-data", async function (req, res) {
     try {
        const data = await USER.find();
       res.status(200).json({
@@ -108,6 +108,7 @@ router.get("/get-user", async function (req, res) {
   }
 );
 
+//user delete
 router.delete("/user-delete/:id", async function (req, res) {
   try {
      const data = await USER.findByIdAndDelete(req.params.id);
@@ -122,10 +123,11 @@ router.delete("/user-delete/:id", async function (req, res) {
 }
 );
 
+//user Data Find
 router.get('/find/:userId', async function (req, res) {
   const userId = req.params.userId;
   try {
-      const user = await Quiz.find({ userid: userId });
+      const user = await Quiz.find({ userid: userId });//req.params.userId
       res.status(200).json(user);
   } catch (err) {
       console.error(err);
