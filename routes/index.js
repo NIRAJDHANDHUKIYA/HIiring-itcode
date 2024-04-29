@@ -91,7 +91,7 @@ router.get('/populate', async (req, res) => {
 //admin penal
 
 //get user data
-router.get("/get-user-data", async function (req, res) {
+router.get("/get-user-data/:id", async function (req, res) {
     try {
        const data = await USER.find();
       res.status(200).json({
