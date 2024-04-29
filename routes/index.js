@@ -123,8 +123,8 @@ router.delete("/user-delete/:id", async function (req, res) {
 }
 );
 
-//user Data Find
-router.get('/find/:userId', async function (req, res) {
+//get user answer data 
+router.get('/find-data/:userId', async function (req, res) {
   const userId = req.params.userId;
   try {
       const user = await Quiz.find({ userid: userId });//req.params.userId
