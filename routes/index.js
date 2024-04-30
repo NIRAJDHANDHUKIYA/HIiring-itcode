@@ -37,16 +37,16 @@ try {
     if (!checkuser) {
         throw new Error("Email not found")
     }
-    let checkPass = await USER.findOne({ Password:req.body.Password})
-
-    if (!checkPass) {
-        throw new Error("Incorrect password")
-    }
-    res.status(200).json({
+    if (checkuser.Password === req.body.Password) {
+      res.status(200).json({
         status: "login",
         message: "successfully",
         userId: checkuser._id,
     })
+    }
+    else {
+      throw new Error("Incorrect password")
+    }
 } catch (error) {
     res.status(404).json({
         status: "fail", 
@@ -88,9 +88,9 @@ router.get('/populate', async (req, res) => {
   });
 
 
-//admin penal
+//*********************admin penal********************
 
-//get user data
+//get all user 
 router.get("/get-user-data", async function (req, res) {
     try {
        const data = await USER.find();
