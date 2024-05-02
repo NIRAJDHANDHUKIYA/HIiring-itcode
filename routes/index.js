@@ -3,6 +3,7 @@ const router = express.Router();
 const cors = require('cors')
 const Quiz = require('../model/quiz')
 const USER = require('../model/user')
+const admin = require('../model/admin')
 
 //signup
 router.post("/signup", async function (req, res) {
@@ -46,7 +47,7 @@ try {
     }
     else {
       throw new Error("Incorrect password")
-    }
+    } 
 } catch (error) {
     res.status(404).json({
         status: "fail", 
@@ -54,11 +55,9 @@ try {
     })
   }
 })
-
 //  quiz Create
 router.post('/quiz', async (req, res) => {
   try {
-      const quiz = await Quiz.create(req.body);
       res.status(200).json({
         status: "Success",
         message: "Task Completed",
@@ -67,7 +66,7 @@ router.post('/quiz', async (req, res) => {
       res.status(400).send(err);
   }
 });
-
+1
 // quiz find
 router.get('/quiz', async (req, res) => {
   try {
@@ -89,6 +88,34 @@ router.get('/populate', async (req, res) => {
 
 
 //*********************admin penal********************
+// admin login 
+
+router.post('/admin-login', async function (req, res) {
+  try {
+      if (!req.body.Email || !req.body.Password) {
+          throw new Error("Email and Password are required")
+      }
+      const checkuser = await admin.findOne({ Email: req.body.Email })
+      
+      if (!checkuser) {
+          throw new Error("Email not found")
+      }
+      if (checkuser.Password === req.body.Password) {
+        res.status(200).json({
+          status: "login",
+          message: "successfully",
+      })
+      }
+      else {
+        throw new Error("Incorrect password")
+      } 
+  } catch (error) {
+      res.status(404).json({
+          status: "fail", 
+          message: error.message,
+      })
+    }
+  })
 
 //get all user 
 router.get("/get-user-data", async function (req, res) {
@@ -107,6 +134,7 @@ router.get("/get-user-data", async function (req, res) {
     }
   }
 );
+
 
 //user delete
 router.delete("/user-delete/:id", async function (req, res) {
