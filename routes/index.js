@@ -58,6 +58,7 @@ try {
 //  quiz Create
 router.post('/quiz', async (req, res) => {
   try {
+      const quiz = await Quiz.create(req.body);
       res.status(200).json({
         status: "Success",
         message: "Task Completed",
@@ -66,7 +67,7 @@ router.post('/quiz', async (req, res) => {
       res.status(400).send(err);
   }
 });
-1
+
 // quiz find
 router.get('/quiz', async (req, res) => {
   try {
@@ -85,7 +86,6 @@ router.get('/populate', async (req, res) => {
         res.status(500).send(err); 
     }
   });
-
 
 //*********************admin penal********************
 // admin login 
