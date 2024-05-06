@@ -8,7 +8,7 @@ const admin = require('../model/admin')
 //signup
 router.post("/signup", async function (req, res) {
   try {
-    if (!req.body.Firstname ||!req.body.Lastname || !req.body.Email || !req.body.Hrname || !req.body.Phonenumber || !req.body.Password) 
+    if (!req.body.Firstname ||!req.body.Lastname || !req.body.Email || !req.body.Hrname || !req.body.Phonenumber || !req.body.Password)
     {
       throw new Error("Please Enter Details")
     } 
@@ -25,7 +25,6 @@ router.post("/signup", async function (req, res) {
   }
 }
 );
-
 
 //login
 router.post('/login', async function (req, res) {
@@ -47,14 +46,15 @@ try {
     }
     else {
       throw new Error("Incorrect password")
-    } 
+    }
 } catch (error) {
     res.status(404).json({
         status: "fail", 
         message: error.message,
     })
   }
-})
+});
+
 //  quiz Create
 router.post('/quiz', async (req, res) => {
   try {
@@ -75,7 +75,7 @@ router.get('/quiz', async (req, res) => {
       res.send(quizzes);
   } catch (err) {
       res.status(500).send(err);
-}})
+}});
 
 //quiz populate
 router.get('/populate', async (req, res) => {
@@ -85,11 +85,11 @@ router.get('/populate', async (req, res) => {
     } catch (err) {
         res.status(500).send(err); 
     }
-  });
+});
 
 //*********************admin penal********************
-// admin login 
 
+// admin login
 router.post('/admin-login', async function (req, res) {
   try {
       if (!req.body.Email || !req.body.Password) {
@@ -102,7 +102,7 @@ router.post('/admin-login', async function (req, res) {
       }
       if (checkuser.Password === req.body.Password) {
         res.status(200).json({
-          status: "login",
+          status: "admin login",
           message: "successfully",
       })
       }
@@ -115,7 +115,7 @@ router.post('/admin-login', async function (req, res) {
           message: error.message,
       })
     }
-  })
+  });
 
 //get all user 
 router.get("/get-user-data", async function (req, res) {
@@ -135,7 +135,6 @@ router.get("/get-user-data", async function (req, res) {
   }
 );
 
-
 //user delete
 router.delete("/user-delete/:id", async function (req, res) {
   try {
@@ -153,7 +152,6 @@ router.delete("/user-delete/:id", async function (req, res) {
 
 //get user answer data 
 router.get('/find-data/:userId', async function (req, res) {
- 
   try {
       const user = await Quiz.find({ userid: req.params.userId });
       res.status(200).json(user);
